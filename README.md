@@ -16,6 +16,7 @@ API for authorization, upload file (image and video), and file listing with Go
 ## Getting Started
 
 Before we start to run or test the API, first we need to know how to install it.
+You can read a better explanation in the README.docx file
 
 ### Installation
 
