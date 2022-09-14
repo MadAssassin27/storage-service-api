@@ -57,7 +57,6 @@ It’s time for us to run the API
 ```sh
 go run main.go
 ```
-<br/>
 ![Picture1](https://user-images.githubusercontent.com/97210571/190069060-5e4e223d-8028-4d9d-80b7-cd022c1b052d.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
