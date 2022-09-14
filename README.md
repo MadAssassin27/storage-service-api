@@ -61,6 +61,11 @@ go run main.go
 
 <!-- Set up Postman -->
 ## Set up Postman
+You can set your own Postman collection or you can access mine in the link below:
+```sh
+https://www.postman.com/material-observer-24642556/workspace/madassassin-workspace/collection/19104806-775e2dcf-c356-4d59-86f0-949f65c29ce3?action=share&creator=19104806
+```
+
 
 1.	Open Postman and create a new collection
 2.	Add four request <br/>
