@@ -5,42 +5,12 @@
   </p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 API for authorization, upload file (image and video), and file listing with Go
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -70,114 +40,87 @@ Before we start to run or test the API, first we need to know how to install it.
    ```sh
    go get gorm.io/gorm
    ```
-4. 3.	I use database sqlite for convenience, so we need to have sqlite installed on our local system
+4. To simplfy the interview process I use sqlite for the database, so we need to have sqlite installed on our local system. In real development practice, I have no issue using more versatile database such as postgre or mysql
+5. For testing I use Postman, you can use both the web version or the desktop version
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
+<!-- Run Go API -->
+## Run Go API
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+It’s time for us to run the API
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+1.	Open your terminal and execute:
+```sh
+go run main.go
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- Set up Postman -->
+## Set up Postman
 
+1.	Open Postman and create a new collection
+2.	Add four request <br/>
+    •	Login: set to POST <br/>
+    •	Upload: set to Post <br/>
+    •	File List: set to GET <br/>
+    •	Get All User: set to GET <br/>
 
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+3.	I’m running the API on port 8000, so we need to set the URL to: <br/>
+    http://127.0.0.1:8000 <br/>
+    With addition to 4 request: <br/>
+      •	Login: http://127.0.0.1:8000/login <br/>
+      •	Upload: http://127.0.0.1:8000/upload <br/>
+      •	File List: http://127.0.0.1:8000/items <br/>
+      •	Get All User: http://127.0.0.1:8000/users <br/>
+    Notes: To simplify the routing process I don’t use API versioning, but in production I experienced on using API versioning
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- API Testing -->
+## API Testing
+After we set up postman and run the API from our terminal, it’s time to test this API
 
+# Users
+I have prepared 4 users for us to try <br/>
+  •	Username: admin, Password: admin <br/>
+    Role: Admin, Authorize to upload file and retrieve file list <br/>
+    <br/>
+  •	Username: admin1, Password: admin1 <br/>
+    Role: Admin, Authorize to upload file and retrieve file list <br/>
+    <br/>
+  •	Username: user, Password: user, Role: user <br/>
+  <br/>
+  •	Username: user1, Password: user1, Role: user <br/>
+  
+# Login
+1.	Open login request and enter JSON Body:
+```sh
+   {
+    "username": "admin",
+    "password": "admin"
+}
+```
 
-<!-- CONTACT -->
-## Contact
+2.	Send and we will get a token response
+3.	Copy and paste the token as x-token value on the Headers KEY to other request to run the authorization mechanism
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Do it to the other three request and now you are accessing the API as Admin
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+# Upload
+This API has Upload function to upload image and video file
+
+1.	Open upload request and now we send data via Form File <br/>
+2.	Fill the name value and click select files to choose a file you want to upload <br/>
+3.	Now click send and it should have a response like this <br/>
+4.	We can open the picture/video by clicking the url to open it on postman, or you can copy the url and open it on your web browser <br/>
+
+# File List
+Yes we can open the file that we just uploaded, but some user can also retrieve the list of file uploaded by other user
+1.	Open file list request and click send as admin, and we should get the file list
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
